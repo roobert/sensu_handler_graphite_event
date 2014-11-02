@@ -1,0 +1,5 @@
+{
+  "graphite_event": {
+    "server_uri": "https://graphite.example.com:443/events/"
+  }
+}
