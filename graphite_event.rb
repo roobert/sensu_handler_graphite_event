@@ -1,4 +1,19 @@
 #!/usr/bin/env ruby
+#
+# Sensu - Graphite Event Handler
+#
+# This handler takes events and POSTs them to a graphite events URI.
+#
+# For configuration see: graphite_event.json
+#
+# See here for more details:
+#
+# * https://code.launchpad.net/~lucio.torre/graphite/add-events/+merge/69142
+#
+# Author: Rob Wilson <roobert@gmail.com>
+#
+# Released under the same terms as Sensu (the MIT license); see LICENSE
+# for details
 
 require 'rubygems' if RUBY_VERSION < '1.9.0'
 require 'sensu-handler'
@@ -12,7 +27,7 @@ class GraphiteEvent < Sensu::Handler
     uri          = URI.parse(uri)
     req          = Net::HTTP::Post.new(uri.path)
     sock         = Net::HTTP.new(uri.host, uri.port)
-    sock.use_ssl = true if uri.scheme = 'https'
+    sock.use_ssl = true
     req.body     = body
 
     req.basic_auth(uri.user, uri.password) if uri.user
